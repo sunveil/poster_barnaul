@@ -63,6 +63,7 @@
 \definecolor{lightgreen}{cmyk}{0.8,0,0.8,0.25}
 \definecolor{uniblue}{RGB}{0,102,153}
 
+\setlist[1]{itemsep=-3pt}
 
 \begin{poster}
 {
@@ -78,7 +79,7 @@ headerFontColor=white, % Text color for the header text in the content boxes
 boxColorOne=white, % Background color of the content boxes
 textborder=rounded, %rectangle, % Format of the border around content boxes, can be: none, bars, coils, triangles, rectangle, rounded, roundedsmall, roundedright or faded
 eyecatcher=false, % Set to false for ignoring the left logo in the title and move the title left
-headerheight=0.11\textheight, % Height of the header
+headerheight=0.15\textheight, % Height of the header
 headershape=roundedright, % Specify the rounded corner in the content box headers, can be: rectangle, small-rounded, roundedright, roundedleft or rounded
 headershade=plain,
 headerfont=\Large\textsf, % Large, bold and sans serif font in the headers of content boxes
@@ -97,7 +98,7 @@ linewidth=2pt % Width of the border lines around content boxes
 }
 } 
 {\sf\vspace{0em}\\
-$Elena~K^{1,*}$, $Kryukov~A.^{1}$, $Bychkov~I.^{2,3}$, $Khmelnov~A.^{2,3}$, $Mikhailov~A.^{2}$, $Shigarov~A.^{1,2,3}$
+$Elena~Korosteleva^{1,*}$, $Kryukov~A.^{1}$, $Bychkov~I.^{2,3}$, $Khmelnov~A.^{2,3}$, $Mikhailov~A.^{2}$, $Shigarov~A.^{1,2,3}$
 \vspace{0.1em}\\
 \small{1. Skobeltsyn Institute of Nuclear Physics, Lomonosov Moscow State University\\
 2. Matrosov Institute for System Dynamics and Control Theory SB RAS\\
@@ -105,13 +106,15 @@ $Elena~K^{1,*}$, $Kryukov~A.^{1}$, $Bychkov~I.^{2,3}$, $Khmelnov~A.^{2,3}$, $Mik
 \vspace{0.0em}\\
 $^*$elkrs@yandex.ru}
 }
-%{\includegraphics{logo}} % University/lab logo
+{\includegraphics[width=0.20\textwidth]{logo_var1.pdf}
+}
+ 
 
-\headerbox{Introduction}{name=introduction,column=0,row=0, span=3}{
-The on-going project, Karlsruhe-Russian astroparticle data life cycle initiative, aims developing an open science system to be able to collect, store, and analyze astroparticle physics data having the TAIGA (http://taiga-experiment.info) and KASCADE (https://web.ikp.kit.edu/KASCADE) experiments as the examples. One of the important issues is how to archive raw binary data to support their availability and reusing in the future. This work demonstrates ways for specifying binary file formats for TAIGA data sharing and reuse. There are several binary file formats used currently in TAIGA project. They provide a representation of raw data obtained from TAIGA facilities, including HiSCORE, IACT, T133, and Grande. The long-term preservation of raw binary data as originally generated is essential for rerunning analyses and reproducing research results in future. In this case, the raw data should be well documented and accompanied by some readers (i.e. software for parsing these data). The neglect of the issues may lead to the need for a reverse engineering of their file binary formats in future. Some of the state-of-the art tools for formal describing binary data formats can provide a good enough solution for the issues of raw astroparticle physics data documenting and parsing. The work considers two of them, KAITAI STRUCT (http://kaitai.io) and FLEXT (http://hmelnov.icc.ru/FlexT). Both allow to express a formal specification of a binary data format in their domain-specific languages and to generate program code for parsing files of the format. The work presents our experience of using these tools for formal describing TAIGA binary data formats, documenting, and parsing library generation. This study can be interested in other experiments where raw binary data formats remain weakly documented or some parsing libraries for contemporary programming languages are required. This work has been financial supported by RSF (grant \textnumero~18-41-06003).
+\headerbox{1. Introduction}{name=introduction,column=0,row=0, span=3}{
+The on-going project, Karlsruhe-Russian astroparticle data life cycle initiative, aims developing an open science system to be able to collect, store, and analyze astroparticle physics data having the TAIGA (http://taiga-experiment.info) and KASCADE (https://web.ikp.kit.edu/KASCADE) experiments as the examples. One of the important issues is how to archive raw binary data to support their availability and reusing in the future. This work demonstrates ways for specifying binary file formats for TAIGA data sharing and reuse. There are several binary file formats used currently in TAIGA project. They provide a representation of raw data obtained from TAIGA facilities, including HiSCORE, IACT, T133, and Grande. The long-term preservation of raw binary data as originally generated is essential for rerunning analysis and reproducing research results in future. In this case, the raw data should be well documented and accompanied by some readers (i.e. software for parsing these data). The neglect of the issues may lead to the need for a reverse engineering of their file binary formats in future. The goal of the work is to provide human readable formal format description, as well as tools for serialization/deserialization and validation of the raw data. Some of the state-of-the art tools for formal describing binary data formats can provide a good enough solution for the issues of raw astroparticle physics data documenting and parsing. The work considers two of them, KAITAI STRUCT (http://kaitai.io) and FLEXT (http://hmelnov.icc.ru/FlexT). Both allow to express a formal specification of a binary data format in their domain-specific languages and to generate program code for parsing files of the format. The work presents our experience of using these tools for formal describing TAIGA binary data formats, documenting, and parsing library generation. This study can be interested in other experiments where raw binary data formats remain weakly documented or some parsing libraries for contemporary programming languages are required. This work has been financial supported by RSF (grant \textnumero~18-41-06003).
 }
 
-\headerbox{Motivation}{name=motivation,column=0,below=introduction,span=1}{
+\headerbox{2. Motivation}{name=motivation,column=0,below=introduction,span=1}{
   \vspace{0.1cm}
 	\smartdiagramset{
 		font=\tiny,
@@ -130,7 +133,7 @@ The on-going project, Karlsruhe-Russian astroparticle data life cycle initiative
 	\end{center}
 
  \textbf{TAIGA formats:}
-	 \begin{itemize}[noitemsep]
+	 \begin{itemize}
 	  	\item TAIGA-IACT
 	  	\item TUNKA-HISCORE
   		\item TUNKA-133
@@ -138,20 +141,14 @@ The on-going project, Karlsruhe-Russian astroparticle data life cycle initiative
 		  \item TUNKA-GRANDE
 	  \end{itemize}
     \textbf{Issue:}
-	  \begin{itemize}[noitemsep]
+	  \begin{itemize}
   		\item No documentation, no open raw data access API
   		\item How to verify and reuse raw data?  
   	\end{itemize}
-    \textbf{Targets of the work are:}
-	  \begin{itemize}[noitemsep,nolistsep]
-  		\item Provide human readable formal format description 
-  		\item Provide tools for serialization/deserialization
-			– Well defined API
-			\item Provide tools for validation of the data
-  	\end{itemize}
+		\vspace{0.17cm}
 }
 
-\headerbox{Solution}{name=solution,span=2,column=1,below=introduction}{ % To reduce this block to 1 column width, remove 'span=2'
+\headerbox{3. Solution}{name=solution,span=2,column=1,below=introduction}{ % To reduce this block to 1 column width, remove 'span=2'
 
 \vspace{0.1cm}
 
@@ -194,7 +191,7 @@ The on-going project, Karlsruhe-Russian astroparticle data life cycle initiative
 
 }
 
-\headerbox{Kaitai Struct}{name=kaitai,span=2,column=1,below=solution}{ % To reduce this block to 1 column width, remove 'span=2'
+\headerbox{4. Kaitai Struct}{name=kaitai,span=2,column=1,below=solution}{ % To reduce this block to 1 column width, remove 'span=2'
 
   \begin{multicols}{2}
     \begin{minipage}{0.50\textwidth}
@@ -218,7 +215,7 @@ The on-going project, Karlsruhe-Russian astroparticle data life cycle initiative
 				% sub columns
 				\begin{multicols}{2}
 				  \begin{minipage}{0.5\textwidth}
-						\begin{itemize}[noitemsep]
+						\begin{itemize}
 							\item C++/STL
 							\item C\#
 							\item Go (*)
@@ -228,7 +225,7 @@ The on-going project, Karlsruhe-Russian astroparticle data life cycle initiative
 				  \end{minipage}
 					
 				  \begin{minipage}{0.5\textwidth}
-						\begin{itemize}[noitemsep]
+						\begin{itemize}
 							\item Lua
 							\item Perl
 							\item PHP
@@ -237,9 +234,9 @@ The on-going project, Karlsruhe-Russian astroparticle data life cycle initiative
 						\end{itemize}
 				  \end{minipage}
         \end{multicols}
-				\vspace{0.1cm}
-				\scriptsize{(*) entry-level support}
-				\vspace{0.1cm}
+				%\vspace{0.1cm}
+				%\scriptsize{(*) entry-level support}
+				%\vspace{0.1cm}
       \end{flushleft}      
     \end{minipage}
   \end{multicols}
@@ -247,11 +244,11 @@ The on-going project, Karlsruhe-Russian astroparticle data life cycle initiative
 %Mikhail Yakshin, "`Kaitai Struct -- a new way to develop parsers for binary structures."', 2018. [Online]. Available: \url{https://kaitai.io}. [Accessed: 29- May- 2018]
 }
 
-\headerbox{Results}{name=done,span=2,column=1,below=kaitai}{ % To reduce this block to 1 column width, remove 'span=2'
+\headerbox{5. Results}{name=done,span=2,column=1,below=kaitai}{ % To reduce this block to 1 column width, remove 'span=2'
 	\begin{multicols}{2}
 	  \begin{minipage}{0.45\textwidth}
 			\vspace{0.1cm}
-			\begin{itemize}[noitemsep]
+			\begin{itemize}
 				\item TAIGA format specifications
 				\item Reading libraries
 				\item Examples for C++, Java, and Python 
@@ -260,11 +257,11 @@ The on-going project, Karlsruhe-Russian astroparticle data life cycle initiative
 		\end{minipage}
 		\begin{minipage}{0.45\textwidth}
   		\vspace{0.1cm}
-			\begin{itemize}[noitemsep]
+			\begin{itemize}
 	  		\item GRANDE, T133, and TREX tested on $\approx$~89~000~files
 				\item	HiSCORE, IACT tested on $\approx$~120~000~files  
 			\end{itemize}
- 			\begin{itemize}[noitemsep]
+ 			\begin{itemize}
 	 			\item 4~\% of GRANDE, T133, and TREX files have BAD file format
 				\item	0,6~\% of HiSCORE and IACT files have BAD file format		
 			\end{itemize}
@@ -273,12 +270,12 @@ The on-going project, Karlsruhe-Russian astroparticle data life cycle initiative
 	\end{multicols}		
 }
 
-\headerbox{How to use. C++ example}{name=src,span=1,column=0,below=motivation}{ % To reduce this block to 1 column width, remove 'span=2'
+\headerbox{6. How to use. C++ example}{name=src,span=1,column=0,below=motivation}{ % To reduce this block to 1 column width, remove 'span=2'
 	\includegraphics[width=1\textwidth]{src.pdf}
 }
 
-\headerbox{HiSCORE specification diagram}{name=example,column=1, span=2, below=done}{
-	\includegraphics[width=1\textwidth]{hiscore.eps}
+\headerbox{7. HiSCORE specification diagram}{name=example,column=1, span=2, below=done}{
+	\includegraphics[width=1\textwidth]{hiscore.pdf}
 }
 
 \end{poster}
