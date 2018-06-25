@@ -111,7 +111,7 @@ $^*$elkrs@yandex.ru}
  
 
 \headerbox{1. Abstract}{name=introduction,column=0,row=0, span=3}{
-The on-going project, Karlsruhe-Russian astroparticle data life cycle initiative, aims developing an open science system to be able to collect, store, and analyze astroparticle physics data having the TAIGA (http://taiga-experiment.info) and KASCADE (https://web.ikp.kit.edu/KASCADE) experiments as the examples. One of the important issues is how to archive raw binary data to support their availability and reusing in the future. This work demonstrates ways for specifying binary file formats for TAIGA data sharing and reuse. There are several binary file formats used currently in TAIGA project. They provide a representation of raw data obtained from TAIGA facilities, including HiSCORE, IACT, T133, and Grande. The long-term preservation of raw binary data as originally generated is essential for rerunning analysis and reproducing research results in future. In this case, the raw data should be well documented and accompanied by some readers (i.e. software for parsing these data). The neglect of the issues may lead to the need for a reverse engineering of their file binary formats in future. The goal of the work is to provide human readable formal format description, as well as tools for serialization/deserialization and validation of the raw data. Some of the state-of-the art tools for formal describing binary data formats can provide a good enough solution for the issues of raw astroparticle physics data documenting and parsing. The work considers two of them, KAITAI STRUCT (http://kaitai.io) and FLEXT (http://hmelnov.icc.ru/FlexT). Both allow to express a formal specification of a binary data format in their domain-specific languages and to generate program code for parsing files of the format. The work presents our experience of using these tools for formal describing TAIGA binary data formats, documenting, and parsing library generation. This study can be interested in other experiments where raw binary data formats remain weakly documented or some parsing libraries for contemporary programming languages are required. This work has been financial supported by RSF (grant No~18-41-06003).
+The on-going project, Karlsruhe-Russian astroparticle data life cycle initiative, aims developing an open science system to be able to collect, store, and analyze astroparticle physics data having the TAIGA (http://taiga-experiment.info) and KASCADE (https://web.ikp.kit.edu/KASCADE) experiments as the examples. One of the important issues is how to archive raw binary data to support their availability and reusing in the future. This work demonstrates ways for specifying binary file formats for TAIGA data sharing and reuse. There are several binary file formats used currently in TAIGA project. They provide a representation of raw data obtained from TAIGA facilities, including HiSCORE, IACT, T133, and Grande. The long-term preservation of raw binary data as originally generated is essential for rerunning analysis and reproducing research results in future. In this case, the raw data should be well documented and accompanied by some readers (i.e. software for parsing these data). The neglect of the issues may lead to the need for a reverse engineering of their file binary formats in future. The goal of the work is to provide human readable formal format description, as well as tools for serialization/deserialization and validation of the raw data. Some of the state-of-the art tools for formal describing binary data formats can provide a good enough solution for the issues of raw astroparticle physics data documenting and parsing. The work consider of KAITAI STRUCT (http://kaitai.io). Both allow to express a formal specification of a binary data format in their domain-specific languages and to generate program code for parsing files of the format. The work presents our experience of using these tools for formal describing TAIGA binary data formats, documenting, and parsing library generation. This study can be interested in other experiments where raw binary data formats remain weakly documented or some parsing libraries for contemporary programming languages are required.
 }
 
 \headerbox{2. Motivation}{name=motivation,column=0,below=introduction,span=1}{
@@ -142,25 +142,22 @@ The on-going project, Karlsruhe-Russian astroparticle data life cycle initiative
 	  \end{itemize}
     \textbf{Issue:}
 	  \begin{itemize}
-  		\item No documentation, no open raw data access API
+  		\item Lack of documentation
+			\item No open raw data access API
   		\item How to verify and reuse raw data?  
   	\end{itemize}
-		\vspace{0.17cm}
+		\vspace{0.09cm}
 }
 
 \headerbox{3. Solution}{name=solution,span=2,column=1,below=introduction}{ % To reduce this block to 1 column width, remove 'span=2'
-
-\vspace{0.1cm}
 
 	\begin{center}
 		\smartdiagram[sequence diagram]{\small{Binary data}, \small{Specification}, \small{Parse library}}
   \end{center}
 
-\vspace{0.1cm}
-
-}
-
-\headerbox{4. Kaitai Struct}{name=kaitai,span=2,column=1,below=solution}{ % To reduce this block to 1 column width, remove 'span=2'
+\begin{center}
+\textbf{Kaitai Struct}
+\end{center}
 
   \begin{multicols}{2}
     \begin{minipage}{0.50\textwidth}
@@ -213,7 +210,7 @@ The on-going project, Karlsruhe-Russian astroparticle data life cycle initiative
 %Mikhail Yakshin, "`Kaitai Struct -- a new way to develop parsers for binary structures."', 2018. [Online]. Available: \url{https://kaitai.io}. [Accessed: 29- May- 2018]
 }
 
-\headerbox{5. HiSCORE specification diagram}{name=example,column=1, span=2, below=kaitai}{
+\headerbox{5. HiSCORE specification diagram}{name=example,column=1, span=2, below=solution}{
 	\includegraphics[width=1\textwidth]{hiscore.pdf}
 }
 
@@ -224,27 +221,29 @@ The on-going project, Karlsruhe-Russian astroparticle data life cycle initiative
 \headerbox{7. Results}{name=done,span=2,column=1,below=example}{ % To reduce this block to 1 column width, remove 'span=2'
 	\begin{multicols}{2}
 	  \begin{minipage}{0.45\textwidth}
-			\vspace{0.1cm}
+			\textbf{Done:}
 			\begin{itemize}
-				\item TAIGA format specifications
-				\item Reading libraries
-				\item Examples for C++, Java, and Python 
+				\item TAIGA format specifications are completed
+				\item Reading libraries are generated
+				\item Examples for C++, Java, and Python implemented 
 				\item The libraries tested on real data
+				\item Can be used for often experiments				
 			\end{itemize}
 		\end{minipage}
 		\begin{minipage}{0.45\textwidth}
-  		\vspace{0.1cm}
+			\textbf{Validation:}
 			\begin{itemize}
 	  		\item GRANDE, T133, and TREX tested on $\approx$~89~000~files
 				\item	HiSCORE, IACT tested on $\approx$~120~000~files  
-			\end{itemize}
- 			\begin{itemize}
 	 			\item 4~\% of GRANDE, T133, and TREX files have BAD file format
 				\item	0,6~\% of HiSCORE and IACT files have BAD file format		
 			\end{itemize}
-			\vspace{0.1cm}
 		\end{minipage}	
 	\end{multicols}		
+	
+	\begin{flushright}
+	This work has been financial supported by RSF (grant No~18-41-06003).
+	\end{flushright}
 }
 
 \end{poster}
