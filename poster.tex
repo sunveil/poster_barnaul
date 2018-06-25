@@ -98,7 +98,7 @@ linewidth=2pt % Width of the border lines around content boxes
 }
 } 
 {\sf\vspace{0em}\\
-$Elena~Korosteleva^{1,*}$, $Kryukov~A.^{1}$, $Bychkov~I.^{2,3}$, $Khmelnov~A.^{2,3}$, $Mikhailov~A.^{2}$, $Shigarov~A.^{1,2,3}$
+$Elena~Korosteleva^{1,*}$, $A.~Kryukov^{1}$, $I.~Bychkov^{2,3}$, $A~Khmelnov.^{2,3}$, $A.~Mikhailov^{2}$, $A.~Shigarov^{1,2,3}$
 \vspace{0.1em}\\
 \small{1. Skobeltsyn Institute of Nuclear Physics, Lomonosov Moscow State University\\
 2. Matrosov Institute for System Dynamics and Control Theory SB RAS\\
@@ -109,7 +109,6 @@ $^*$elkrs@yandex.ru}
 {\includegraphics[width=0.20\textwidth]{logo_var1.pdf}
 }
  
-
 \headerbox{1. Abstract}{name=introduction,column=0,row=0, span=3}{
 The on-going project, Karlsruhe-Russian astroparticle data life cycle initiative, aims developing an open science system to be able to collect, store, and analyze astroparticle physics data having the TAIGA (http://taiga-experiment.info) and KASCADE (https://web.ikp.kit.edu/KASCADE) experiments as the examples. One of the important issues is how to archive raw binary data to support their availability and reusing in the future. This work demonstrates ways for specifying binary file formats for TAIGA data sharing and reuse. There are several binary file formats used currently in TAIGA project. They provide a representation of raw data obtained from TAIGA facilities, including HiSCORE, IACT, T133, and Grande. The long-term preservation of raw binary data as originally generated is essential for rerunning analysis and reproducing research results in future. In this case, the raw data should be well documented and accompanied by some readers (i.e. software for parsing these data). The neglect of the issues may lead to the need for a reverse engineering of their file binary formats in future. The goal of the work is to provide human readable formal format description, as well as tools for serialization/deserialization and validation of the raw data. Some of the state-of-the art tools for formal describing binary data formats can provide a good enough solution for the issues of raw astroparticle physics data documenting and parsing. The work consider of KAITAI STRUCT (http://kaitai.io). Both allow to express a formal specification of a binary data format in their domain-specific languages and to generate program code for parsing files of the format. The work presents our experience of using these tools for formal describing TAIGA binary data formats, documenting, and parsing library generation. This study can be interested in other experiments where raw binary data formats remain weakly documented or some parsing libraries for contemporary programming languages are required.
 }
